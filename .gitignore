@@ -1,0 +1,35 @@
+# Results and sensitive data
+results/
+*.log
+*.csv
+*.json
+*.xml
+
+# Configuration files with secrets
+.env
+config.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp

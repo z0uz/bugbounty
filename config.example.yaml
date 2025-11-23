@@ -1,0 +1,50 @@
+# Bug Bounty Toolkit Configuration
+
+# Target Configuration
+target:
+  domain: "example.com"
+  scope:
+    - "*.example.com"
+    - "example.com"
+  out_of_scope:
+    - "admin.example.com"
+    - "internal.example.com"
+
+# API Keys (Optional - for enhanced reconnaissance)
+api_keys:
+  shodan: "YOUR_SHODAN_API_KEY"
+  censys_id: "YOUR_CENSYS_ID"
+  censys_secret: "YOUR_CENSYS_SECRET"
+  virustotal: "YOUR_VIRUSTOTAL_KEY"
+  securitytrails: "YOUR_SECURITYTRAILS_KEY"
+
+# Scanning Configuration
+scanning:
+  threads: 10
+  timeout: 30
+  user_agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+  rate_limit: 10  # requests per second
+  
+# Reconnaissance Settings
+recon:
+  subdomain_enumeration: true
+  port_scanning: true
+  directory_bruteforce: true
+  technology_detection: true
+  javascript_analysis: true
+  
+# Vulnerability Scanning
+vuln_scanning:
+  xss: true
+  sqli: true
+  ssrf: true
+  open_redirect: true
+  csrf: true
+  lfi: true
+  rce: false  # Dangerous - use with extreme caution
+  
+# Output Settings
+output:
+  directory: "./results"
+  format: "json"  # json, html, txt
+  verbose: true
