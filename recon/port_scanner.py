@@ -91,18 +91,18 @@ class PortScanner:
                 except Exception as e:
                     pass
     
-    def quick_scan(self):
+    def quick_scan(self, threads: int = 100):
         """Scan common ports"""
         print(f"{Fore.YELLOW}[*] Running quick scan (common ports)...{Style.RESET_ALL}")
-        self.scan_ports(list(self.common_ports.keys()))
-    
-    def full_scan(self):
+        self.scan_ports(list(self.common_ports.keys()), threads=threads)
+
+    def full_scan(self, threads: int = 100):
         """Scan all 65535 ports"""
         print(f"{Fore.YELLOW}[*] Running full scan (all 65535 ports)...{Style.RESET_ALL}")
         print(f"{Fore.RED}[!] This may take a while...{Style.RESET_ALL}")
-        self.scan_ports(range(1, 65536))
-    
-    def custom_scan(self, port_range: str):
+        self.scan_ports(range(1, 65536), threads=threads)
+
+    def custom_scan(self, port_range: str, threads: int = 100):
         """Scan custom port range (e.g., '1-1000' or '80,443,8080')"""
         ports = []
         
@@ -115,7 +115,7 @@ class PortScanner:
             ports = [int(port_range)]
         
         print(f"{Fore.YELLOW}[*] Scanning custom port range...{Style.RESET_ALL}")
-        self.scan_ports(ports)
+        self.scan_ports(ports, threads=threads)
     
     def save_results(self):
         """Save scan results"""
@@ -158,14 +158,14 @@ def main():
     scanner.print_banner()
     
     if args.mode == "quick":
-        scanner.quick_scan()
+        scanner.quick_scan(threads=args.threads)
     elif args.mode == "full":
-        scanner.full_scan()
+        scanner.full_scan(threads=args.threads)
     elif args.mode == "custom":
         if not args.ports:
             print(f"{Fore.RED}[-] Custom mode requires --ports argument{Style.RESET_ALL}")
             return
-        scanner.custom_scan(args.ports)
+        scanner.custom_scan(args.ports, threads=args.threads)
     
     scanner.print_summary()
     scanner.save_results()
