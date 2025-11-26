@@ -76,6 +76,21 @@ bug_bounty_toolkit/
    python reports/ai_report_generator.py -i results/target.com_ai_comprehensive_report.json
    ```
 
+### Example commands
+
+```bash
+# Scan multiple targets from a file and save each run in its own folder
+while read -r target; do
+  python tools/vulnerability_scanner.py -t "$target" -o "results/$target"
+done < targets.txt
+
+# Save AI scan output to a custom path for later reporting
+python tools/ai_vulnerability_scanner.py -t https://example.com -o results/example_ai
+
+# Toggle AI analysis off while keeping the AI workflow flags handy
+python tools/ai_vulnerability_scanner.py -t api.target.com --no-ai --skip-recon
+```
+
 ## 🔍 Methodology
 
 ### Phase 1: Reconnaissance
