@@ -49,6 +49,8 @@ bug_bounty_toolkit/
 2. **Run vulnerability scan:**
    ```bash
    python tools/vulnerability_scanner.py -t target.com
+   # Include a quick port scan during reconnaissance (optional)
+   python tools/vulnerability_scanner.py -t target.com --port-scan-mode quick --port-scan-threads 200
    ```
 
 ### AI-Enhanced Mode (Recommended)
